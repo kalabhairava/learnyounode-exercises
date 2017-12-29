@@ -1,2 +1,3 @@
 # learnyounode-exercises
-Solutions for learnyounode exercies
+
+Solutions for learnyounode exercises
