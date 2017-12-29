@@ -3,16 +3,16 @@ const fs = require("fs");
 const dirPath = process.argv[2];
 const fileExtension = process.argv[3];
 
-const regex = new RegExp(`\.${fileExtension}$`);
+const regex = new RegExp(`.+\.${fileExtension}$`); //(`\.${fileExtension}$`);
 // TODO: modify this to make sure that the file name contains at least on character.
-// something like `?*\.${fileExension}$`
+// something like `.*\.${fileExtension}$`
 
 // returns an array of files and directories in the given directory
 fs.readdir(dirPath, (err, data) => {
   // filter files with the given file extension
   const filteredFiles = data.filter(file => {
     return regex.test(file); // The problem with this is it will match files like .txt, .md, etc i.e. files with just extension, but no valid file name.
-    //file.endsWith("." + fileExtension); won't work. It returns true if the file name contains the extension, not necessarily at the end.
+    //file.endsWith("." + fileExtension); won 't work. It returns true if the file name contains the extension, not necessarily at the end.
   });
 
   filteredFiles.forEach(file => console.log(file));
