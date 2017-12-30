@@ -3,16 +3,20 @@ const http = require("http");
 // grab the URL from arguments list
 const URL = process.argv[2];
 
-// stores the whole data
+// a bucket that stores the whole data
 let contents = "";
 
 http.get(URL, response => {
+  // make it return a string instead of a buffer
+  // Optionally, you can get a buffer and then convert it to a string via toString()
   response.setEncoding("utf-8");
 
+  // Every time you receive a chunk of data, add it the bucket of `contents` var
   response.on("data", data => {
     contents = contents + data;
   });
 
+  // Once all the chunks of data are available, log the length, and the contents
   response.on("end", () => {
     console.log(contents.length);
     console.log(contents);
